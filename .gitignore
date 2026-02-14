@@ -1,0 +1,10 @@
+# Arduino IDE generated files
+*.elf
+*.hex
+*.bin
+*.lock
+build/
+
+# MacOS / Windows system files
+.DS_Store
+Thumbs.db
