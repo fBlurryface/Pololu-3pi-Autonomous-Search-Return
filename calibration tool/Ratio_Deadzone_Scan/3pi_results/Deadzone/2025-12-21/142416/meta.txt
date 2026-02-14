@@ -1,0 +1,3 @@
+cmd=DZ
+port=COM4, baud=115200
+timestamp=2025-12-21 14:24:16

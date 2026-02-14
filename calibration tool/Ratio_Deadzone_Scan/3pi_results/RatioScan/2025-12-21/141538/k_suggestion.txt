@@ -1,0 +1,4 @@
+Suggested universal k (forward only)
+Filter: mean_cpsR > 200
+k_median = 0.952720
+k_least_squares = 0.952031

@@ -1,0 +1,4 @@
+Deadzone estimate: first pwm with mean_is_moving >= 0.67
+wheel L : pwm >= 16
+wheel R : pwm >= 14
+wheel wheel : not found in scanned range
