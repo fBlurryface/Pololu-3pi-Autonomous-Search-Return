@@ -38,7 +38,6 @@ Clicking the image opens the PDF.
     </td>
 
     <td align="center" width="50%">
-      <!-- Replace with your demo2 gif + link when ready -->
       <a href="https://youtu.be/jjI0YxvIigU">
         <img src="figure/demo2.gif" width="420" alt="Demo 2 (GIF preview)">
       </a>
