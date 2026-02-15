@@ -27,11 +27,22 @@ Clicking the image opens the PDF.
 |---|---|
 | <div align="center">[![Demo 1](figure/demo1.gif)](https://youtu.be/SrgynV45UOs)<br><b>Timeout</b><br><a href="https://youtu.be/SrgynV45UOs">▶ Play on YouTube</a></div> | <div align="center">[![Demo 2](figure/demo2.gif)](https://youtu.be/jjI0YxvIigU)<br><b>Magnet</b><br><a href="https://youtu.be/jjI0YxvIigU">▶ Play on YouTube</a></div> |
 
-## Motor deadzone figure (placeholder slot)
+## Motor deadzone & PWM ratio calibration
 
-Replace this with your final deadzone visualization (PWM→CPS curve, moving probability, etc.).
+This repository includes calibration sketches to measure each wheel’s **deadzone** and the **left/right PWM ratio**
+so wheel-speed control becomes more repeatable.
 
-![Deadzone Placeholder](figure/02_move_rate_vs_pwm.png)
+The figures below are **example results from my own robot**. Your numbers may differ due to motor variance, gearbox friction,
+battery level, and surface conditions—so please run the calibration on your own setup.
+
+<p align="center">
+  <img src="figure/02_move_rate_vs_pwm.png" width="780" alt="Move rate vs PWM (deadzone identification)">
+</p>
+
+<p align="center">
+  <img src="figure/03_mean_cps_vs_pwm_errorbars.png" width="390" alt="Mean CPS vs PWM (with error bars)">
+  <img src="figure/08_mean_ratio_vs_pwm_errorbars.png" width="390" alt="Mean L/R ratio vs PWM (with error bars)">
+</p>
 
 ---
 
