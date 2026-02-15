@@ -129,11 +129,46 @@ Most knobs are at the top of the main firmware:
 
 ## Notes
 
-- Odometry is encoder-based: wheel slip will accumulate error.
-- The “map boundary” is enforced via **line edge avoidance** + **virtual boundary logic**, not a full localization stack.
+### Assumptions & limitations
+- **Odometry is encoder-based**. Wheel slip, uneven floor, and aggressive pivots will accumulate pose error over time.
+- The **map boundary is enforced implicitly** via:
+  - **RC line sensors** (detecting the black edge / boundary and triggering avoidance), and
+  - a **virtual boundary** defined along the initial reference axis (“east”).
+  This is **not** a full localization or SLAM pipeline.
 
----
+### Practical implications
+- **Turning in place is the biggest error source** (slip + uneven traction). If return-to-home misses, reduce pivot speed and/or tighten PID clamp during turns.
+- The “go home” behavior uses the **current odometry estimate**. If odom drift is large, the robot may stop near (not exactly at) the start.
 
-## License
+### Environment requirements
+- The line sensor thresholds depend heavily on:
+  - floor reflectivity (matte vs glossy),
+  - ambient light,
+  - sensor height and emitter strength.
+  Always run the **initial calibration spin** on the same surface/material as the mission.
 
-Add your chosen license (MIT / Apache-2.0 / GPL-3.0 / etc.).
+### Calibration hints (recommended workflow)
+- Run these tools first on your setup to reduce drift and improve repeatability:
+  - **Straight counts / meters-per-count** calibration (left/right may differ slightly)
+  - **Wheelbase (effective wheelbase)** calibration by 360° turn
+  - **Ratio / Deadzone scan** for the wheel speed controller (e.g. `Ratio_Deadzone_Scan`)
+    - Characterizes the PWM deadzone and left/right asymmetry
+    - Helps the controller produce predictable low-speed motion and cleaner stops
+  - **Backlash measurement** (only if you use backlash compensation in odometry)
+- After calibration, keep speeds conservative first; then increase cruise speed gradually.
+
+### Trigger behavior (what can happen)
+- **Line edge triggers** are evaluated only on **new sensor frames** (to avoid retriggering on stale readings).
+- A short **lockout** is applied after avoidance to prevent immediate re-triggering on the same boundary.
+- **Magnet detection** is checked continuously during cruise; once triggered, the system enters terminate/return-home and suppresses other triggers.
+
+### Safety / debugging tips
+- If the robot appears to “get stuck”:
+  - check your **timeout** settings for stop/pivot phases,
+  - verify encoder wiring and that both wheels report counts and speed,
+  - verify line sensor normalization is not saturated (0 or 1000 all the time).
+- If return-home is consistently biased, double-check:
+  - wheel direction polarity (left/right forward levels),
+  - meters-per-count L/R mismatch,
+  - effective wheelbase value.
+
