@@ -25,8 +25,31 @@ Clicking the image opens the PDF.
 
 ### YouTube (Click Picture to watch)
 
-[![YouTube demo](https://img.youtube.com/vi/SrgynV45UOs/hqdefault.jpg)](https://youtu.be/SrgynV45UOs)
----
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <a href="https://youtu.be/SrgynV45UOs">
+        <img src="figure/demo1.gif" width="420" alt="Demo 1 (GIF preview)">
+      </a>
+      <br/>
+      <a href="https://youtu.be/SrgynV45UOs">▶ Play on YouTube</a>
+      <br/>
+      <b>Demo 1 — Mission run</b>
+    </td>
+
+    <td align="center" width="50%">
+      <!-- Replace with your demo2 gif + link when ready -->
+      <a href="https://youtu.be/REPLACE_WITH_DEMO2_LINK">
+        <img src="figure/demo2.gif" width="420" alt="Demo 2 (GIF preview)">
+      </a>
+      <br/>
+      <a href="https://youtu.be/REPLACE_WITH_DEMO2_LINK">▶ Play on YouTube</a>
+      <br/>
+      <b>Demo 2 — (title)</b>
+    </td>
+  </tr>
+</table>
+
 
 ## Motor deadzone figure (placeholder slot)
 
