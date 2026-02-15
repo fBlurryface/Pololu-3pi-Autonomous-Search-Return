@@ -25,8 +25,7 @@ Clicking the image opens the PDF.
 
 ### YouTube (Click Picture to watch)
 
-[![YouTube demo (Shorts)](https://img.youtube.com/vi/DVe-mRGxPlA/hqdefault.jpg)]([https://youtube.com/shorts/DVe-mRGxPlA](https://youtu.be/SrgynV45UOs))
-
+[![YouTube demo](https://img.youtube.com/vi/SrgynV45UOs/hqdefault.jpg)](https://youtu.be/SrgynV45UOs)
 ---
 
 ## Motor deadzone figure (placeholder slot)
