@@ -17,7 +17,7 @@ Clicking the image opens the PDF.
 
 [![Task Map](figure/Map_A2_preview.png)](figure/Map_A2.pdf)
 
-- PDF source: `figure/Map_A2.pdf`
+*Source: University of Bristol — Paul O’Dowd. File: `figure/Map_A2.pdf`.*
 
 ---
 
