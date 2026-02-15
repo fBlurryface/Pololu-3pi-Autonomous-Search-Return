@@ -25,7 +25,7 @@ Clicking the image opens the PDF.
 
 | Demo 1 | Demo 2 |
 |---|---|
-| <div align="center">[![Demo 1](figure/demo1.gif)](https://youtu.be/SrgynV45UOs)<br><b>Demo 1 — Timeout</b><br><a href="https://youtu.be/SrgynV45UOs">▶ Play on YouTube</a></div> | <div align="center">[![Demo 2](figure/demo2.gif)](https://youtu.be/jjI0YxvIigU)<br><b>Demo 2 — Magnet</b><br><a href="https://youtu.be/jjI0YxvIigU">▶ Play on YouTube</a></div> |
+| <div align="center">[![Demo 1](figure/demo1.gif)](https://youtu.be/SrgynV45UOs)<br><b>Timeout</b><br><a href="https://youtu.be/SrgynV45UOs">▶ Play on YouTube</a></div> | <div align="center">[![Demo 2](figure/demo2.gif)](https://youtu.be/jjI0YxvIigU)<br><b>Magnet</b><br><a href="https://youtu.be/jjI0YxvIigU">▶ Play on YouTube</a></div> |
 
 ## Motor deadzone figure (placeholder slot)
 
