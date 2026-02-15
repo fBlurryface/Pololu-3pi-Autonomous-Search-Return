@@ -39,17 +39,24 @@ so wheel-speed control becomes more repeatable.
 The figures below are **example results from my own robot**. Your numbers may differ due to motor variance, gearbox friction,
 battery level, and surface conditions—so please run the calibration on your own setup.
 
-<p align="center">
-  <img src="figure/02_move_rate_vs_pwm.png" width="420" alt="Move rate vs PWM (deadzone)">
-  <img src="figure/03_mean_cps_vs_pwm_errorbars.png" width="420" alt="Mean CPS vs PWM (error bars)">
-</p>
-
-<p align="center">
-  <img src="figure/07_mean_cpsL_cpsR_vs_pwm_errorbars.png" width="420" alt="Mean CPS_L / CPS_R vs PWM (error bars)">
-  <img src="figure/08_mean_ratio_vs_pwm_errorbars.png" width="420" alt="Mean L/R ratio vs PWM (error bars)">
-</p>
-
-
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="figure/02_move_rate_vs_pwm.png" width="400" alt="Move rate vs PWM (deadzone)">
+    </td>
+    <td align="center" width="50%">
+      <img src="figure/03_mean_cps_vs_pwm_errorbars.png" width="400" alt="Mean CPS vs PWM (error bars)">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="figure/07_mean_cpsL_cpsR_vs_pwm_errorbars.png" width="400" alt="Mean CPS_L / CPS_R vs PWM (error bars)">
+    </td>
+    <td align="center" width="50%">
+      <img src="figure/08_mean_ratio_vs_pwm_errorbars.png" width="400" alt="Mean L/R ratio vs PWM (error bars)">
+    </td>
+  </tr>
+</table>
 ---
 
 ## Repository structure
