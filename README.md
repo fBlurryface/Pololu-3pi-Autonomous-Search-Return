@@ -1,70 +1,69 @@
 # Pololu-3pi-Autonomous-Search-Return
 Control code for Pololu 3pi+ 32U4 robot.
 
-1. **Start-up initialization** (line sensor calibration + reference heading)
-2. **Grid/coverage-style exploration** inside a bounded area (track edge + “virtual boundary”)
-3. **Magnet detection**
-4. **Return-to-home** when a magnet is found **or** when a time limit expires
+1. **Start initialization** (sensor calibration + establish a reference heading)
+2. **Coverage-style search** for a magnet inside the mapped area  
+   (line-edge avoidance + a “virtual boundary” to keep the robot inside the region)
+3. **Return-to-home trigger**: **magnet found** OR **time limit reached**
+4. **Return home** (stop → turn toward origin → drive back → hold)
 
-> Coordinate convention used everywhere in this repo:
-> - `x` forward, `y` left
-> - heading `th` is **continuous** and **right turn is negative**
-
----
-
-## Task map
-
-The mission is designed around the following map:
-
-- PDF: **[`figure/Map_A2.pdf`](figure/Map_A2.pdf)**
-
-> GitHub may not render PDFs inline in the README on all views.
-> Click the link above to open the map.
+Designed for **power-on auto-run**: flash the main firmware, power the robot, it starts the mission.
 
 ---
 
-## Demo video (YouTube)
+## Task map (shown directly on the repo page)
 
-GitHub READMEs do **not** allow an embedded YouTube player (iframes are blocked),  
-but you can add a clickable thumbnail like this:
+GitHub does **not** reliably render PDFs inline inside README.  
+So the README shows a PNG preview, and clicking the image opens the PDF.
 
-[![Demo video](https://img.youtube.com/vi/VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID_HERE)
+[![Task Map](figure/Map_A2_preview.png)](figure/Map_A2.pdf)
 
-Replace `VIDEO_ID_HERE` with your video ID.
-
-> If you want **inline playback** on GitHub, the usual approach is to upload an `.mp4`
-> to the repository (or to a GitHub Release) and link it in the README.
+- PDF source: `figure/Map_A2.pdf`
 
 ---
 
-## Motor deadzone / drive characterization
+## Demo video (playable window on the repo page)
 
-Placeholders + example plots live in `figure/`.
+### Option A (best on GitHub): inline MP4 player in README
 
-Example (moving probability vs PWM):
+GitHub blocks `<iframe>`, so you can’t embed a YouTube player directly.  
+But GitHub **can** show an inline video player if you attach an MP4 to the README:
 
-![Deadzone / moving probability](figure/02_move_rate_vs_pwm.png)
+1. On GitHub, edit `README.md`
+2. Drag-and-drop `demo.mp4` into the editor
+3. GitHub inserts a `https://github.com/user-attachments/assets/...` URL
+4. Keep that URL **alone on its own line** → README will display a playable video window
 
-> You can replace/extend this section with your final deadzone figure(s) and notes.
+Paste the generated link here (keep it as a single line):
+
+<!-- https://github.com/user-attachments/assets/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX -->
+
+### Option B: YouTube thumbnail link (not inline playback)
+
+Replace `VIDEO_ID` with your YouTube video ID:
+
+[![YouTube demo](https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
 
 ---
 
-## Repository layout
+## Motor deadzone figure (placeholder slot)
+
+Replace this with your final deadzone visualization (PWM→CPS curve, moving probability, etc.).
+
+![Deadzone Placeholder](figure/deadzone_placeholder.png)
+
+---
+
+## Repository structure
 
 - `Main_Firmware/`
-  - `Main_Firmware.ino` — **the main mission firmware** (init → explore → detect → return home)
-  - `Encoders3pi.h`, `Motors3pi.h`, `PID3pi.h`, `WheelSpeedCtrl3pi.h`, `OdomDiff2W_Basic.h`
-  - `LineSensorsRC.h`, `MagnetDetector3pi.h`
+  - Main mission firmware (FSM + motion shaping + odometry + sensor triggers)
 - `Modules/`
-  - Standalone “API showcase” sketches for each module (LineSensors / Magnet / Motion / Odometry)
+  - Standalone “API showcase” sketches for individual modules (LineSensors / Magnet / Motion / Odometry)
 - `calibration tool/`
-  - Calibration and measurement sketches:
-    - `metersPerCountTest/` — meters-per-count calibration
-    - `WheelBaseCalib_Right360/` — effective wheelbase via in-place rotation
-    - `BacklashTest/` — backlash measurement helper
-    - `Ratio_Deadzone_Scan/` — deadzone + L/R ratio scan tooling (includes MATLAB script + results)
+  - Calibration & measurement sketches (straight counts, wheelbase turn, backlash measurement, deadzone scans, etc.)
 - `figure/`
-  - Map PDF + plots
+  - Map + README figures
 
 ---
 
@@ -74,81 +73,70 @@ Example (moving probability vs PWM):
 - Pololu **3pi+ 32U4**
 
 ### Arduino libraries
-- **Arduino core** for ATmega32U4
-- **Pololu LIS3MDL** library (for the magnetometer) — header: `LIS3MDL.h`
+- **Pololu LIS3MDL** (magnetometer) — provides `LIS3MDL.h`
 
-> The rest of the hardware access (encoders, motors, RC line sensors) is implemented in this repo.
+Everything else (encoders, motor driver layer, RC line sensors, odometry, speed control) is implemented in this repo.
 
 ---
 
 ## Quick start
 
-1. Open: `Main_Firmware/Main_Firmware.ino` in Arduino IDE
-2. Select a board compatible with **ATmega32U4** (3pi+ 32U4)
+1. Open `Main_Firmware/Main_Firmware.ino` in Arduino IDE
+2. Select a board compatible with **ATmega32U4**
 3. Install the **Pololu LIS3MDL** library
-4. Compile & upload
+4. Build & upload
 
 On power-up, the robot will:
-- calibrate and establish a reference heading (“east”)
-- drive forward to set a virtual boundary origin
-- enter exploration mode (edge avoidance + virtual boundary)
+- calibrate and establish a reference heading (“east” reference)
+- drive forward to set the virtual boundary origin
+- start exploration (edge avoidance + virtual boundary)
 - continuously check the magnetometer
-- return home when triggered
+- return home when triggered (magnet or timeout)
 
 ---
 
-## How the mission works (high level)
+## How it works (module relationships)
 
-### 1) Initialization
-- Line sensors start non-blocking calibration for `LINE_CALIB_MS`
-- Robot spins in place for `INIT_TURN_DEG`
-- A reference heading `eastRefTh` is saved and turned into a unit vector `(eastUx, eastUy)`
-- After a short settle, the robot drives forward `INIT_FWD_M`
+### Sensors
+- **RC line sensors** — `LineSensorsRC.h`  
+  Non-blocking RC charge/discharge timing, auto-calibration (min/max), normalized 0..1000.  
+  Used for **edge detection** and avoidance.
+- **Magnetometer** — `MagnetDetector3pi.h`  
+  Baseline calibration + threshold detection during exploration.
 
-### 2) Exploration
-- Cruise command is shaped as:
-  - `avg` (forward) and `diff` (turn) with acceleration limiting
-  - wheel targets: `tgtL = avg - diff`, `tgtR = avg + diff`
-- Edge detection from normalized line sensors (0..1000):
-  - if edge pattern is detected → hard stop → pivot turn → settle → resume
-- Virtual boundary:
-  - project pose onto “east” axis: `s = eastUx*x + eastUy*y`
-  - once armed, if `s` crosses back past `VBOUND_S0_M` (with hysteresis) → corrective pivot toward east
+### Motion
+- **Encoders** — `Encoders3pi.h`  
+  Interrupt-based counts + windowed speed estimate (counts/s).
+- **Wheel speed control** — `WheelSpeedCtrl3pi.h`  
+  Sets target wheel speed (CPS) → outputs motor command (PID + clamps).
 
-### 3) Magnet detection
-- During exploration, magnet is checked continuously.
-- If magnet is detected, the firmware switches immediately to **terminate / return-home**.
-
-### 4) Return home
-- Stop, then turn to face origin `(0,0)`
-- Drive straight the current odometry distance back to origin
-- Hold
+### Odometry / Navigation
+- **Differential-drive odometry** — `OdomDiff2W_Basic.h`  
+  Integrates `(x, y, th)` from encoder deltas.
+- **Return-home logic**  
+  stop → turn-to-origin → drive straight back → hold.
 
 ---
 
-## Where to tune parameters
+## Common tuning knobs
 
-The main knobs are at the top of **`Main_Firmware/Main_Firmware.ino`**:
-- timing (`LINE_CALIB_MS`, settle times, time limit)
-- thresholds (line sensor edge/white thresholds, stop detection)
-- speed targets (`initTurnDiffCps`, `exploreCruiseAvgCps`, `exploreTurnDiffCps`)
+Most knobs are at the top of the main firmware:
+- time limit / mission timeout
+- line thresholds (edge/white)
+- magnet detection threshold
+- cruise & pivot speeds (CPS)
+- settle times / lockouts
 - motion shaping limits (accel limiters, PID clamps)
-- virtual boundary settings (`VBOUND_*`)
 
 ---
 
-## Notes / gotchas
+## Notes
 
-- **Single-translation-unit implementations**
-  - Some headers use the pattern:
-    - `#define ENCODERS3PI_IMPLEMENTATION`
-    - `#define MAGNET_DETECTOR3PI_IMPLEMENTATION`
-  - These must be defined in **exactly one** `.ino/.cpp` that includes the header.
-- **Arduino auto-prototype**
-  - The main firmware forward-declares enums before includes to avoid Arduino’s auto-generated
-    prototype edge cases.
+- Odometry is encoder-based: wheel slip will accumulate error.
+- The “map boundary” is enforced via **line edge avoidance** + **virtual boundary logic**, not a full localization stack.
 
 ---
 
 ## License
-Add your preferred license here (MIT/BSD/GPL/etc.).
+
+Add your chosen license (MIT / Apache-2.0 / GPL-3.0 / etc.).
