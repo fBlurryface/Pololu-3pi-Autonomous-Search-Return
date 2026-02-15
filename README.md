@@ -39,7 +39,9 @@ so wheel-speed control becomes more repeatable.
 The figures below are **example results from my own robot**. Your numbers may differ due to motor variance, gearbox friction,
 battery level, and surface conditions—so please run the calibration on your own setup.
 
-<table>
+<div align="center">
+
+<table style="margin: 0 auto;">
   <tr>
     <td align="center" width="50%">
       <img src="figure/02_move_rate_vs_pwm.png" width="400" alt="Move rate vs PWM (deadzone)">
@@ -57,6 +59,9 @@ battery level, and surface conditions—so please run the calibration on your ow
     </td>
   </tr>
 </table>
+
+</div>
+
 ---
 
 ## Repository structure
