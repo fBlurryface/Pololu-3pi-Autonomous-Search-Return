@@ -38,11 +38,9 @@ Paste the generated link here (keep it as a single line):
 
 <!-- https://github.com/user-attachments/assets/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX -->
 
-### Option B: YouTube thumbnail link (not inline playback)
+### Option B: YouTube (thumbnail link)
 
-Replace `VIDEO_ID` with your YouTube video ID:
-
-[![YouTube demo](https://youtube.com/shorts/DVe-mRGxPlA)
+[![YouTube demo (Shorts)](https://img.youtube.com/vi/DVe-mRGxPlA/hqdefault.jpg)](https://youtube.com/shorts/DVe-mRGxPlA)
 
 ---
 
