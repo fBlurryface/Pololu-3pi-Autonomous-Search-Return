@@ -34,15 +34,19 @@ Clicking the image opens the PDF.
       <br/>
       <a href="https://youtu.be/SrgynV45UOs">▶ Play on YouTube</a>
       <br/>
+      <a href="figure/demo1.gif">Open GIF</a>
+      <br/>
       <b>Demo 1 — Mission run</b>
     </td>
 
     <td align="center" width="50%">
       <a href="https://youtu.be/jjI0YxvIigU">
-        <img src="figure/demo2.gif" width="420" alt="Demo 2 (GIF preview)">
+        <img src="figure/demo2.gif" width="420" alt="Demo 2 (GIF preview — if you can't see this, check file path/size)">
       </a>
       <br/>
       <a href="https://youtu.be/jjI0YxvIigU">▶ Play on YouTube</a>
+      <br/>
+      <a href="figure/demo2.gif">Open GIF</a>
       <br/>
       <b>Demo 2 — (title)</b>
     </td>
