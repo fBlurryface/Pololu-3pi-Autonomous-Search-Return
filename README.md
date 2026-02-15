@@ -23,21 +23,7 @@ Clicking the image opens the PDF.
 
 ## Demo video (playable window on the repo page)
 
-### Option A (best on GitHub): inline MP4 player in README
-
-GitHub blocks `<iframe>`, so you can’t embed a YouTube player directly.  
-But GitHub **can** show an inline video player if you attach an MP4 to the README:
-
-1. On GitHub, edit `README.md`
-2. Drag-and-drop `demo.mp4` into the editor
-3. GitHub inserts a `https://github.com/user-attachments/assets/...` URL
-4. Keep that URL **alone on its own line** → README will display a playable video window
-
-Paste the generated link here (keep it as a single line):
-
-<!-- https://github.com/user-attachments/assets/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX -->
-
-### Option B: YouTube (thumbnail link)
+### YouTube (Click Picture to watch)
 
 [![YouTube demo (Shorts)](https://img.youtube.com/vi/DVe-mRGxPlA/hqdefault.jpg)](https://youtube.com/shorts/DVe-mRGxPlA)
 
