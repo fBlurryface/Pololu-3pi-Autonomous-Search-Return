@@ -13,8 +13,7 @@ Designed for **power-on auto-run**: flash the main firmware, power the robot, it
 
 ## Task map
 
-GitHub does **not** reliably render PDFs inline inside README.  
-So the README shows a PNG preview, and clicking the image opens the PDF.
+Clicking the image opens the PDF.
 
 [![Task Map](figure/Map_A2_preview.png)](figure/Map_A2.pdf)
 
@@ -48,7 +47,7 @@ Paste the generated link here (keep it as a single line):
 
 Replace this with your final deadzone visualization (PWM→CPS curve, moving probability, etc.).
 
-![Deadzone Placeholder](figure/deadzone_placeholder.png)
+![Deadzone Placeholder](figure/02_move_rate_vs_pwm.png)
 
 ---
 
