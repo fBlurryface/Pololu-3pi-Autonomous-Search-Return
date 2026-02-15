@@ -11,7 +11,7 @@ Designed for **power-on auto-run**: flash the main firmware, power the robot, it
 
 ---
 
-## Task map (shown directly on the repo page)
+## Task map
 
 GitHub does **not** reliably render PDFs inline inside README.  
 So the README shows a PNG preview, and clicking the image opens the PDF.
@@ -42,7 +42,7 @@ Paste the generated link here (keep it as a single line):
 
 Replace `VIDEO_ID` with your YouTube video ID:
 
-[![YouTube demo](https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
+[![YouTube demo](https://youtube.com/shorts/DVe-mRGxPlA)
 
 ---
 
