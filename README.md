@@ -39,11 +39,11 @@ Clicking the image opens the PDF.
 
     <td align="center" width="50%">
       <!-- Replace with your demo2 gif + link when ready -->
-      <a href="https://youtu.be/REPLACE_WITH_DEMO2_LINK">
+      <a href="https://youtu.be/jjI0YxvIigU">
         <img src="figure/demo2.gif" width="420" alt="Demo 2 (GIF preview)">
       </a>
       <br/>
-      <a href="https://youtu.be/REPLACE_WITH_DEMO2_LINK">▶ Play on YouTube</a>
+      <a href="https://youtu.be/jjI0YxvIigU">▶ Play on YouTube</a>
       <br/>
       <b>Demo 2 — (title)</b>
     </td>
