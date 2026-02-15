@@ -23,13 +23,9 @@ Clicking the image opens the PDF.
 
 ## Demo video
 
-### YouTube (Click picture to watch)
-
 | Demo 1 | Demo 2 |
 |---|---|
-| [![Demo 1 (GIF preview)](figure/demo1.gif)](https://youtu.be/SrgynV45UOs)<br>**Demo 1 — Mission run**<br>[▶ Play on YouTube](https://youtu.be/SrgynV45UOs) | [![Demo 2 (GIF preview)](figure/demo2.gif)](https://youtu.be/jjI0YxvIigU)<br>**Demo 2 — (title)**<br>[▶ Play on YouTube](https://youtu.be/jjI0YxvIigU) |
-
-
+| <div align="center">[![Demo 1 (GIF preview)](figure/demo1.gif)](https://youtu.be/SrgynV45UOs)<br><b>Demo 1 — Mission run</b><br><a href="https://youtu.be/SrgynV45UOs">▶ Play on YouTube</a></div> | <div align="center">[![Demo 2 (GIF preview)](figure/demo2.gif)](https://youtu.be/jjI0YxvIigU)<br><b>Demo 2 — (title)</b><br><a href="https://youtu.be/jjI0YxvIigU">▶ Play on YouTube</a></div> |
 
 ## Motor deadzone figure (placeholder slot)
 
