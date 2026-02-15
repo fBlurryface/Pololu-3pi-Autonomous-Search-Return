@@ -21,7 +21,7 @@ Clicking the image opens the PDF.
 
 ---
 
-## Demo video (playable window on the repo page)
+## Demo video
 
 ### YouTube (Click Picture to watch)
 
